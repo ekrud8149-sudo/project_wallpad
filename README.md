@@ -1,19 +1,9 @@
 Smart Wallpad System (Home Assistant 기반 IoT 출입 관리 시스템)
-📌 프로젝트 개요
+### *🎨 프로젝트 목표 !*
+- Raspberry Pi + Touch Display 기반 Wallpad UI 구현
+- Raspberry Pi와 7" Touch Display를 사용하여 homeassistant를 활용한 Wallpad 구현
+- stm32과 arduino uno 보드를 사용하여 센서값 전달 및 mariaDB 저장
 
-Raspberry Pi와 7" 터치 디스플레이를 활용하여
-Home Assistant 기반의 Wallpad(월패드) 시스템을 구현한 프로젝트입니다.
-
-STM32 및 Arduino 보드를 통해 센서 및 제어 데이터를 수집하고,
-이를 MQTT, MariaDB와 연동하여 출입 관리 및 스마트 홈 제어 시스템을 구축했습니다.
-
-🎯 프로젝트 목표
-
-Raspberry Pi + Touch Display 기반 Wallpad UI 구현
-
-STM32 / Arduino를 통한 센서 및 제어 시스템 구축
-
-MQTT + MariaDB 기반 데이터 통합 및 로그 관리
 
 👨‍💻 담당 역할
 
@@ -26,60 +16,44 @@ Flask 기반 실시간 웹캠 스트리밍 및 캡처 시스템 구현
 Home Assistant UI에 날짜, 시간, 날씨 표시
 
 🎥 시연 영상
-
+<iframe width="624" height="351" src="https://www.youtube.com/embed/M8JA2rLNz2I" title="통합 설비 관리 터치 월패드 시스템 시연영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 👉 https://youtu.be/M8JA2rLNz2I?si=XrtbHMHnrbMkMU0O
 
 🖥️ UI 화면
 
-(이미지 추가 예정)
+<img width="803" height="448" alt="image" src="https://github.com/user-attachments/assets/8fc4b7bf-a7f1-4d54-9993-a0a4cba22d7e" />
 
-⚙️ 주요 기능
-🅰️ 제어 및 알림 (STM32)
 
-물리 버튼 + 부저를 이용한 초인종 기능
+## 기능
 
-서보 모터를 이용한 문 열림/닫힘 제어
+### **A. 제어 및 알림 (STM32 기반)**
 
-사용자 요청 기반 실시간 캡처 (Home Assistant 저장)
+- 사용자 인터랙션: 물리 버튼과 부저(Buzzer)를 이용해 초인종 역할
+- 서보 모터 제어: 문열림 / 문닫힘 푸시버튼으로 제어
+- 사용자 요청 기반 실시간 캡처 시스템  : HA 미디어에 저장
+- 구역별 조명 제어: 거실, 안방, 2층 등 각 구역의 LED를 개별 또는 일괄적으로 제어
 
-구역별 LED 제어 (거실 / 안방 / 2층 등)
+### **B. 보안 및 인증 (Arduino 기반)**
 
-🅱️ 보안 및 인증 (Arduino)
+- RFID 사용자 인증:
+사용자가 RFID를 태그할 때마다 집 / 외출 상태가 즉각적으로 토글되도록 로직을 설계
+    
+     LED / servo moter를 통해 시각적인 인증 피드백을 제공 
+    
 
-RFID 기반 사용자 인증
+### **C. 모니터링 및 허브 (Raspberry Pi 4 기반)**
 
-태그 시 재실 상태 (집 / 외출) 자동 토글
+- 중앙 집중 제어: 터치 디스플레이를 통해 전체 시스템을 제어하는 대시보드 역할
+- 실시간 영상 스트리밍: Flask 서버(Python) 기반의 웹캠 스트리밍 파이프라인을 구축
+- 데이터 통합:
+    
+    Bridge 서버: STM32/Arduino의 Serial 데이터를 수집하여 MQTT 브로커로 변환 송신하는 Python 브릿지 파일 개발
+    
+    MariaDB : STM32와 Arduino로부터 받은 데이터를 Home Assistant로 전달하고 로그 기록
 
-LED 및 서보모터를 통한 시각적 피드백 제공
+### **아키텍쳐**
+<img width="1158" height="688" alt="image" src="https://github.com/user-attachments/assets/49691774-2c39-4b2e-9dd8-39367a17d5a7" />
 
-🅲 모니터링 및 허브 (Raspberry Pi)
-
-터치 디스플레이 기반 중앙 제어 대시보드
-
-Flask 기반 실시간 웹캠 스트리밍
-
-Bridge 서버
-
-Serial(STM32/Arduino) → MQTT 변환
-
-Home Assistant 연동
-
-MariaDB
-
-출입 로그 및 이벤트 기록
-
-🏗️ 시스템 아키텍처
-
-(아키텍처 이미지 추가)
-
-🗄️ Database (MariaDB)
-Tables
-
-rfid_log : 사용자 재실 상태(집/외출) 기록
-
-door_bell : 초인종 이벤트 기록
-
-door_lock : 도어락 상태(OPEN/CLOSE) 기록
 
 📂 프로젝트 구조
 ├── cam_server.py
@@ -98,6 +72,10 @@ door_lock : 도어락 상태(OPEN/CLOSE) 기록
 │
 └── database/
     └── MariaDB
+            ├── rfid_log/
+            └── door_bell/
+            |__ door_lock/
+    
 🔧 기술 스택
 
 Hardware
