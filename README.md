@@ -16,8 +16,7 @@ Flask 기반 실시간 웹캠 스트리밍 및 캡처 시스템 구현
 Home Assistant UI에 날짜, 시간, 날씨 표시
 
 🎥 시연 영상
-<iframe width="624" height="351" src="https://www.youtube.com/embed/M8JA2rLNz2I" title="통합 설비 관리 터치 월패드 시스템 시연영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-👉 https://youtu.be/M8JA2rLNz2I?si=XrtbHMHnrbMkMU0O
+https://youtu.be/M8JA2rLNz2I?si=XrtbHMHnrbMkMU0O
 
 🖥️ UI 화면
 
