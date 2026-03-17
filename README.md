@@ -72,11 +72,12 @@ Home Assistant UI에 날짜, 시간, 날씨 표시
 │   └── Arduino/
 │
 └── database/
-    └── MariaDB
-        ├── rfid_log        # 유저 재실 상태 로그
-        ├── door_bell       # 초인종 이벤트 기록
-        └── door_lock       # 도어락 상태 기록
-    
+    └── MariaDB/
+        ├── rfid_log    # 유저 재실 상태 로그
+        ├── door_bell   # 초인종 이벤트 기록
+        └── door_lock   # 도어락 상태 기록
+
+        
 🔧 기술 스택
 
 Hardware
