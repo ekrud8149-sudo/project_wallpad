@@ -98,11 +98,10 @@ Home Assistant → 자동화 처리
 사용자 → UI (Touch Display)로 제어
 
 ## *Maria DB*
-![image.png](attachment:774e6816-3906-4e78-86a9-b1fe93382bdb:image.png)
+<img width="410" height="516" alt="image" src="https://github.com/user-attachments/assets/60eb3b7d-e1d3-4d59-a115-f809447944e6" />
+<img width="355" height="397" alt="image" src="https://github.com/user-attachments/assets/7a1481de-d747-4358-96bc-d5ddae788178" />
+<img width="371" height="207" alt="image" src="https://github.com/user-attachments/assets/4fce9703-c400-41fc-a717-361b35df762d" />
 
-![image.png](attachment:56d9a6ab-95b8-49b4-a4b4-d55a32561651:image.png)
-
-![image.png](attachment:ad288279-296e-4d6d-a7aa-4255f70faf80:image.png)
 
 ## *Trougle Shooting*
 ❗ Issue
