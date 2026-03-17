@@ -1,0 +1,50 @@
+- id: '1770547030420'
+  alias: capture
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.doorbell
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: script.cctv
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1770871962336'
+  alias: User1 RFID 출입 관리
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.user1_rfid_tag
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: input_boolean.toggle
+    metadata: {}
+    target:
+      entity_id: input_boolean.user1
+    data: {}
+  mode: single
+- id: '1771751718963'
+  alias: User2 RFID 출입 관리
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.user2_rfid_tag
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: input_boolean.toggle
+    metadata: {}
+    target:
+      entity_id:
+      - input_boolean.user2
+    data: {}
+  mode: single

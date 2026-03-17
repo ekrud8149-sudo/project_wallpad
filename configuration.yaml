@@ -1,0 +1,138 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# FFmpeg를 이용한 로컬 USB 카메라 설정
+camera:
+  - platform: ffmpeg
+    input: /dev/video1
+    extra_arguments: -input_format mjpeg -video_size 640x480 -framerate 15
+    name: My Webcam
+
+# 1. DB 연결 (로컬호스트 접속)
+recorder:
+  db_url: mysql://homeassistant:password@127.0.0.1/homeassistant
+
+# 2. MQTT 센서 (STM32 연동)
+mqtt:
+  switch:
+    # 1. Floor 1 Switch (PB0 ON only)
+    - name: "Floor 1"
+      unique_id: "floor_1_only"
+      command_topic: "home/floor1"
+      payload_on: "FLOOR1_ONLY"
+      payload_off: "ALL_OFF"
+      icon: "mdi:numeric-1-box"
+      optimistic: true
+
+    # 2. All Lights Switch (All ON)
+    - name: "All Lights"
+      unique_id: "all_lights"
+      command_topic: "home/floor1"
+      payload_on: "ALL_ON"
+      payload_off: "ALL_OFF"
+      icon: "mdi:lightbulb-group"
+      optimistic: true
+
+    # 3. Door Lock
+    - name: "Door Lock"
+      unique_id: "door_lock_01"
+      command_topic: "home/control"
+      payload_on: "OPEN"
+      payload_off: "CLOSE"
+      icon: "mdi:lock-open-variant"
+      optimistic: true
+
+    # 4. Living Room Light (LED1)
+    - name: "Living Room Light"
+      unique_id: "led_living_01"
+      command_topic: "home/control"
+      payload_on: "LED1_ON"
+      payload_off: "LED1_OFF"
+      icon: "mdi:sofa"
+      optimistic: true
+
+    # 5. Second Floor Light (LED2)
+    - name: "Second Floor Light"
+      unique_id: "led_floor2_01"
+      command_topic: "home/control"
+      payload_on: "LED2_ON"
+      payload_off: "LED2_OFF"
+      icon: "mdi:stairs"
+      optimistic: true
+
+    # 6. Master Room Light (LED3)
+    - name: "Master Room Light"
+      unique_id: "led_master_01"
+      command_topic: "home/control"
+      payload_on: "LED3_ON"
+      payload_off: "LED3_OFF"
+      icon: "mdi:bed"
+      optimistic: true
+
+
+  binary_sensor:
+    - name: "Doorbell"
+      unique_id: "doorbell_01"
+      state_topic: "home/doorbell"
+      payload_on: "RING"
+      off_delay: 2
+      device_class: sound
+      icon: "mdi:bell-ring"
+
+    - name: "User1 RFID Tag"
+      unique_id: "rfid_user1_mqtt"
+      state_topic: "home/rfid"
+      payload_on: "USER1"
+      off_delay: 2
+
+    - name: "User2 RFID Tag"
+      unique_id: "rfid_user2_mqtt"
+      state_topic: "home/rfid"
+      payload_on: "USER2"
+      off_delay: 2
+
+
+template:
+  - sensor:
+      - name: "채수빈"
+        unique_id: "user1_status_text"
+        state: >
+          {% if is_state('input_boolean.user1', 'on') %}
+            집
+          {% else %}
+            외출 중
+          {% endif %}
+        icon: >
+          {% if is_state('input_boolean.user1', 'on') %}
+            mdi:home
+          {% else %}
+            mdi:exit-run
+          {% endif %}
+
+      - name: "이다경"
+        unique_id: "user2_status_text"
+        state: >
+          {% if is_state('input_boolean.user2', 'on') %}
+            집
+          {% else %}
+            외출 중
+          {% endif %}
+        icon: >
+          {% if is_state('input_boolean.user2', 'on') %}
+            mdi:home
+          {% else %}
+            mdi:exit-run
+          {% endif %}
+        
+
+
+media_player:
+  - platform: vlc
