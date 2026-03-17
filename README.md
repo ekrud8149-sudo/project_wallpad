@@ -54,12 +54,12 @@ https://youtu.be/M8JA2rLNz2I?si=XrtbHMHnrbMkMU0O
 <img width="1158" height="688" alt="image" src="https://github.com/user-attachments/assets/49691774-2c39-4b2e-9dd8-39367a17d5a7" />
 
 
-##**프로젝트 구조**
+## *프로젝트 구조*
 
 <img width="366" height="399" alt="화면 캡처 2026-03-17 155133" src="https://github.com/user-attachments/assets/d0434c26-d7d0-4b4d-b964-45f7bb1c484c" />
 
         
-##**기술 스택**
+## *기술 스택*
 
 Hardware
 
