@@ -56,7 +56,7 @@ Home Assistant UI에 날짜, 시간, 날씨 표시
 
 
 📂 프로젝트 구조
-bash
+
 ├── cam_server.py
 │   └── Flask 기반 웹캠 스트리밍 및 스냅샷 서버
 │
